@@ -5,6 +5,6 @@ export type blogItem = {
     title: string;
     startDate: string;
     description: string;
-    contect?: string;
+    content?: string;
     isFeatured?: boolean;
 };

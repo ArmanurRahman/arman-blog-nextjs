@@ -5,7 +5,11 @@ import path from "path";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-const getPostData = (fileName: string): blogItem => {
+export const getPostsFiles = () => {
+    return fs.readdirSync(postsDirectory);
+};
+
+export const getPostData = (fileName: string): blogItem => {
     const filePath = path.join(postsDirectory, fileName);
     const fileContent = fs.readFileSync(filePath, "utf-8");
 
