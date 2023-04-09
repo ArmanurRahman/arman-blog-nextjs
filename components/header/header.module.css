@@ -1,0 +1,18 @@
+.navigation {
+    display: flex;
+    padding: 2rem 6rem;
+    align-items: center;
+    justify-content: space-between;
+}
+.navigation ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    font-size: 1.5rem;
+}
+.home_link {
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
