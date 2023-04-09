@@ -2,15 +2,7 @@ import Image from "next/image";
 import classes from "./blog-item.module.css";
 import React from "react";
 import { useRouter } from "next/router";
-
-type blogItem = {
-    slug: string;
-    imegeURI: string;
-    imageAlt: string;
-    title: string;
-    startDate: string;
-    description: string;
-};
+import { blogItem } from "@/type/post";
 
 const BlogItem = (props: { items: Array<blogItem> }) => {
     const { items } = props;
@@ -29,8 +21,8 @@ const BlogItem = (props: { items: Array<blogItem> }) => {
                 >
                     <div className={classes.blog_card__image}>
                         <Image
-                            src={item.imegeURI}
-                            alt={item.imageAlt}
+                            src={`/image/blog/${item.imegeURI}`}
+                            alt={item.slug}
                             width={360}
                             height={200}
                         />

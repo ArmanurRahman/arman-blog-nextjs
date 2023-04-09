@@ -3,8 +3,9 @@ import classes from "./hero.module.css";
 import Header from "../header/header";
 import BlogList from "../blog/blog-list";
 import { Fragment } from "react";
+import { blogItem } from "@/type/post";
 
-const Hero = () => {
+const Hero = (props: { posts: Array<blogItem> }) => {
     return (
         <Fragment>
             <section className={classes.hero}>
@@ -26,7 +27,7 @@ const Hero = () => {
                     </p>
                 </div>
             </section>
-            <BlogList />
+            <BlogList posts={props.posts} />
         </Fragment>
     );
 };
