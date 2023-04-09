@@ -5,6 +5,8 @@ import classes from "../../styles/DetailPost.module.css";
 import { getPostData, getPostsFiles } from "@/lib/post-util";
 import { blogItem } from "@/type/post";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 const PostDetailPage = (props: { post: blogItem }) => {
     const { post } = props;
@@ -25,7 +27,18 @@ const PostDetailPage = (props: { post: blogItem }) => {
                     </div>
                 );
             }
+
             return <p>{paragraph.children}</p>;
+        },
+        code(code: any) {
+            const _array = code.className.split("-");
+            const _language = _array[1];
+
+            return (
+                <SyntaxHighlighter language={_language} style={atomDark}>
+                    {code.children[0]}
+                </SyntaxHighlighter>
+            );
         },
     };
     return (
@@ -46,7 +59,7 @@ const PostDetailPage = (props: { post: blogItem }) => {
 
                 {post.content && (
                     <ReactMarkdown
-                        className={classes.font_black}
+                        className={classes.markdown_content}
                         components={customRenderer}
                     >
                         {post.content}
@@ -75,7 +88,7 @@ export const getStaticPaths = async () => {
     const slugs = postFiles.map((fileName) => fileName.replace(/\.md$/, ""));
     return {
         paths: slugs.map((slug) => ({ params: { slug: slug } })),
-        fallback: false,
+        fallback: "blocking",
     };
 };
 export default PostDetailPage;
