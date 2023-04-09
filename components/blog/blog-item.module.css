@@ -1,0 +1,36 @@
+.blog_section {
+    display: flex;
+    gap: 2rem;
+    padding: 3rem;
+}
+
+.blog_card {
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #646262;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.blog_card__detail {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.blog_card__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.blog_card_date {
+    font-style: italic;
+}
+
+.blog_card__description {
+    text-align: center;
+}
