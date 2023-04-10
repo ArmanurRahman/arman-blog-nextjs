@@ -8,3 +8,9 @@ export type blogItem = {
     content?: string;
     isFeatured?: boolean;
 };
+
+export type contact = {
+    email: string;
+    name: string;
+    message: string;
+};
