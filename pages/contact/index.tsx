@@ -1,11 +1,14 @@
-import React, { Fragment, useRef } from "react";
+import React, { Fragment, useContext, useRef } from "react";
 import classes from "../../styles/contact.module.css";
 import Header from "@/components/header/header";
+import NotificationContext from "@/store/notification-context";
 
 const ContactPage = () => {
     const emailRef = useRef<HTMLInputElement>(null);
     const nameRef = useRef<HTMLInputElement>(null);
     const messageRef = useRef<HTMLTextAreaElement>(null);
+
+    const notificationCtx = useContext(NotificationContext);
 
     const postHandler = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -13,6 +16,11 @@ const ContactPage = () => {
         const name = nameRef.current?.value;
         const message = messageRef.current?.value;
 
+        notificationCtx.showNotification({
+            title: "Posting",
+            status: "pending",
+            message: "posting Comment",
+        });
         if (
             String(email?.trim) === "" ||
             String(name?.trim) === "" ||
@@ -21,13 +29,30 @@ const ContactPage = () => {
             return;
         }
 
-        const response = await fetch("/api/contact", {
-            method: "POST",
-            body: JSON.stringify({ email: email, name, message }),
-        });
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                body: JSON.stringify({ email: email, name, message }),
+            });
+            const data = await response.json();
+            if (response.ok) {
+                notificationCtx.showNotification({
+                    title: "Posted",
+                    status: "success",
+                    message: "posted successfully",
+                });
+            } else {
+                throw new Error(data.message || "Something went wrong");
+            }
 
-        const data = await response.json();
-        console.log({ data });
+            console.log({ response, data });
+        } catch (error) {
+            notificationCtx.showNotification({
+                title: "Fail",
+                status: "error",
+                message: "posted failed",
+            });
+        }
     };
     return (
         <Fragment>

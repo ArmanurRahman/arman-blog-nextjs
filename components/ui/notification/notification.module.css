@@ -1,0 +1,25 @@
+.notification {
+    display: flex;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+
+.success {
+    background-color: var(--success);
+}
+
+.pending {
+    background-color: var(--pending);
+}
+
+.error {
+    background-color: var(--error);
+}

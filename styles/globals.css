@@ -11,6 +11,10 @@
   --background-mid-rgb: 128, 201, 147;
   --background-light-white: #f0eaea;
 
+  --success: #14A44D;
+  --error: #DC4C64;
+  --pending: #54B4D3;
+
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
     #16abff33 0deg,
